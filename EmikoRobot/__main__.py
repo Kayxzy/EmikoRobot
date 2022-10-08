@@ -83,12 +83,13 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 *Hello {} !*
-✪ I'm an anime-theme management bot [✨](https://telegra.ph/file/11b5922a33de9968cedfe.jpg)
+✪ I'm an management bot [✨](https://telegra.ph/file/afeb5db8c17e5f8a56aa2.jpg)
 ────────────────────────
 × *Uptime:* `{}`
 × `{}` *users, across* `{}` *chats.*
 ────────────────────────
 ✪ Hit /help to see my available commands.
+✪ Maintaned By @sandreast
 """
 
 buttons = [
@@ -97,9 +98,6 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="Get Help", callback_data="help_back"),
-        InlineKeyboardButton(
-            text="Try inline!​​", switch_inline_query_current_chat=""
-        ),
     ],
     [
         InlineKeyboardButton(
@@ -113,7 +111,7 @@ Click on the button bellow to get description about specifics command."""
 
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project by contacting @excrybaby \
+ You can support the project by contacting @sandreast \
  Supporting isnt always financial! \
  Those who cannot provide monetary support are welcome to help us develop the bot at ."""
 
@@ -383,10 +381,7 @@ def emiko_about_callback(update, context):
                     InlineKeyboardButton(text="Credits", callback_data="emiko_credit"),
                  ],
                  [
-                    InlineKeyboardButton(text="Source Code", url="https://github.com/Kayxzy/KayRobot"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="emiko_back"),
+                    InlineKeyboardButton(text="Go Back", callback_data="source_back"),
                  ]
                 ]
             ),
@@ -428,8 +423,8 @@ def emiko_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Support", url="t.me/KayMusicSupport"),
-                    InlineKeyboardButton(text="Updates", url="https://t.me/MusicKaySupport"),
+                    InlineKeyboardButton(text="Support", url="t.me/OwnerTelegraph"),
+                    InlineKeyboardButton(text="Updates", url="https://t.me/KayProject"),
                  ],
                  [
                     InlineKeyboardButton(text="Go Back", callback_data="emiko_"),
@@ -448,12 +443,12 @@ def emiko_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="sena-ex", url="https://github.com/Kayxzy"),
+                    InlineKeyboardButton(text="sena-ex", url="https://github.com/kennedy-ex"),
                     InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
                  ],
                  [
                     InlineKeyboardButton(text="Feri", url="https://github.com/FeriEXP"),
-                    InlineKeyboardButton(text="riz-ex", url="https://github.com/Kayxzy"),
+                    InlineKeyboardButton(text="riz-ex", url="https://github.com/riz-ex"),
                  ],
                  [
                     InlineKeyboardButton(text="Anime Kaizoku", url="https://github.com/animekaizoku"),
@@ -571,25 +566,6 @@ def get_help(update: Update, context: CallbackContext):
 
     else:
         send_help(chat.id, HELP_STRINGS)
-
-
-def start_back(update: Update, _: CallbackContext):
-    query = update.callback_query
-    uptime = get_readable_time((time.time() - StartTime))
-    if query.data == "emiko_back":
-        first_name = update.effective_user.first_name
-        query.message.edit_text(
-            PM_START_TEXT.format(
-                escape_markdown(first_name),
-                escape_markdown(uptime),
-                sql.num_users(),
-                sql.num_chats(),
-            ),
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
-            disable_web_page_preview=True,
-        )
 
 
 def send_settings(chat_id, user_id, user=False):
@@ -822,9 +798,6 @@ def main():
     help_callback_handler = CallbackQueryHandler(
         help_button, pattern=r"help_.*", run_async=True
     )
-    start_callback_handler = CallbackQueryHandler(
-        start_back, pattern=r"emiko_back", run_async=True
-    )
 
     settings_handler = CommandHandler("settings", get_settings, run_async=True)
     settings_callback_handler = CallbackQueryHandler(
@@ -848,7 +821,6 @@ def main():
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(about_callback_handler)
-    dispatcher.add_handler(start_callback_handler)
     dispatcher.add_handler(source_callback_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
