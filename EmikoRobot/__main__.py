@@ -83,12 +83,13 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 *Hello {} !*
-✪ I'm an anime-theme management bot [✨](https://telegra.ph/file/11b5922a33de9968cedfe.jpg)
+✪ I'm an management bot [✨](https://telegra.ph/file/afeb5db8c17e5f8a56aa2.jpg)
 ────────────────────────
 × *Uptime:* `{}`
 × `{}` *users, across* `{}` *chats.*
 ────────────────────────
 ✪ Hit /help to see my available commands.
+✪ Maintaned By @sandreast
 """
 
 buttons = [
@@ -97,9 +98,6 @@ buttons = [
     ],
     [
         InlineKeyboardButton(text="Get Help", callback_data="help_back"),
-        InlineKeyboardButton(
-            text="Try inline!​​", switch_inline_query_current_chat=""
-        ),
     ],
     [
         InlineKeyboardButton(
@@ -113,7 +111,7 @@ Click on the button bellow to get description about specifics command."""
 
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project by contacting @excrybaby \
+ You can support the project by contacting @sandreast \
  Supporting isnt always financial! \
  Those who cannot provide monetary support are welcome to help us develop the bot at ."""
 
@@ -383,9 +381,6 @@ def emiko_about_callback(update, context):
                     InlineKeyboardButton(text="Credits", callback_data="emiko_credit"),
                  ],
                  [
-                    InlineKeyboardButton(text="Source Code", url="https://github.com/kennedy-ex/EmikoRobot"),
-                 ],
-                 [
                     InlineKeyboardButton(text="Go Back", callback_data="source_back"),
                  ]
                 ]
@@ -428,8 +423,8 @@ def emiko_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Support", url="t.me/emikosupport"),
-                    InlineKeyboardButton(text="Updates", url="https://t.me/KennedyProject"),
+                    InlineKeyboardButton(text="Support", url="t.me/OwnerTelegraph"),
+                    InlineKeyboardButton(text="Updates", url="https://t.me/KayProject"),
                  ],
                  [
                     InlineKeyboardButton(text="Go Back", callback_data="emiko_"),
