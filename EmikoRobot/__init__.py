@@ -7,7 +7,6 @@ import asyncio
 import time
 
 from inspect import getfullargspec
-from telethon import TelegramClient
 from telethon.sessions import StringSession
 from telethon.sessions import MemorySession
 from pyrogram.types import Message
