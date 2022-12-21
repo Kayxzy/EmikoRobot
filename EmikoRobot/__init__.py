@@ -7,7 +7,6 @@ import asyncio
 import time
 
 from inspect import getfullargspec
-from telethon.sessions import MemorySession
 from pyrogram.types import Message
 from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
