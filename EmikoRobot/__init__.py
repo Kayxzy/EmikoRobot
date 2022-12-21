@@ -5,7 +5,6 @@ import sys
 import json
 import asyncio
 import time
-
 from inspect import getfullargspec
 from pyrogram import Client, errors
 from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
@@ -30,9 +29,9 @@ logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger('ptbcontrib.postgres_persistence.postgrespersistence').setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger('[EmikoRobot]')
-LOGGER.info("Emiko is starting. | An Kennedy Project Parts. | Licensed under GPLv3.")
+LOGGER.info("Kyura is starting. | An Kyura Project Parts. | Licensed under GPLv3.")
 LOGGER.info("Not affiliated to other anime or Villain in any way whatsoever.")
-LOGGER.info("Project maintained by: github.com/kennedy-ex (t.me/excrybaby)")
+LOGGER.info("Project maintained by: github.com/Kyuraxp (t.me/xflskyura)")
 
 # if version < 3.9, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 8:
@@ -108,8 +107,6 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     WALL_API = os.environ.get("WALL_API", None)
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
-    SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
-    SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY", None)
     CF_API_KEY = os.environ.get("CF_API_KEY", None)
     WELCOME_DELAY_KICK_SEC = os.environ.get("WELCOME_DELAY_KICL_SEC", None)
@@ -189,8 +186,6 @@ else:
     TIME_API_KEY = Config.TIME_API_KEY
     WALL_API = Config.WALL_API
     SUPPORT_CHAT = Config.SUPPORT_CHAT
-    SPAMWATCH_SUPPORT_CHAT = Config.SPAMWATCH_SUPPORT_CHAT
-    SPAMWATCH_API = Config.SPAMWATCH_API
     SESSION_STRING = Config.SESSION_STRING
     INFOPIC = Config.INFOPIC
     BOT_USERNAME = Config.BOT_USERNAME
@@ -210,16 +205,6 @@ DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(2137482758)
 DEV_USERS.add(1866066766)
-
-if not SPAMWATCH_API:
-    sw = None
-    LOGGER.warning("SpamWatch API key missing! recheck your config")
-else:
-    try:
-        sw = spamwatch.Client(SPAMWATCH_API)
-    except:
-        sw = None
-        LOGGER.warning("Can't connect to SpamWatch!")
 
 from EmikoRobot.modules.sql import SESSION
 
